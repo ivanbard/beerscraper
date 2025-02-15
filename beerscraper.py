@@ -18,8 +18,12 @@ options.add_argument("--disable-gpu")
 options.add_argument("--window-size=1920,1080")
 options.add_argument("start-maximized")
 
+searched_beer = input("What beer are you looking for? ").strip()
+fs_beer = searched_beer.replace(" ", "%20")
+
 driver = webdriver.Chrome(options=options)
-driver.get("https://www.thebeerstore.ca/beers")
+url = "https://www.thebeerstore.ca/beers?query=" + fs_beer
+driver.get(url) #use the search feature to allow user to search for the beer the desire.
 time.sleep(5)
 
 soup = BeautifulSoup(driver.page_source, "lxml")
