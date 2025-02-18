@@ -1,13 +1,11 @@
 #web scraper for the beer store - Ivan Bardziyan
-import requests
-import time
+import time, re, csv, requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import chromedriver_autoinstaller
-import re, csv
 
 chromedriver_autoinstaller.install()
 
@@ -53,16 +51,3 @@ with open("beer_list.csv", "w", newline="", encoding="utf-8") as file:
     writer = csv.writer(file)
     writer.writerow(["Beer Name", "Pack Size", "Bottle Size", "Price"])
     writer.writerows(structured_beer)
-
-'''
-if beer_list:
-    print(f"Found {len(beer_list)} beers.")
-    for name in beer_list:
-        print(name)
-else:
-    print("No beer data found. Check HTML structure again.")
-
-clean_list = [name.split('*')[0].strip() for name in beer_list]
-for name in clean_list:
-    print(name)
-'''
